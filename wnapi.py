@@ -15,7 +15,7 @@ newsapi_configuration = worldnewsapi.Configuration(api_key={'apiKey': wn_token})
 try:
 	newsapi_instance = worldnewsapi.NewsApi(worldnewsapi.ApiClient(newsapi_configuration))
 
-	max_results = 250   # replace with your maximum
+	max_results = 25   # replace with your maximum
 	offset = 0
 	all_results = []
 
@@ -28,8 +28,8 @@ try:
 			language='en',
 			sort="publish-time",
 			sort_direction="desc",
-			min_sentiment=-0.8,
-			max_sentiment=0.8,
+			min_sentiment=-0.6,
+			max_sentiment=0.6,
 			offset=offset,
 			number=request_count)
 
@@ -48,8 +48,7 @@ except worldnewsapi.ApiException as e:
 	print("Exception when calling NewsApi->search_news: %s\n" % e)
 
 async def main():
-	for article in all_results:
-		await send_news(article.title)
+	await send_news(all_results[0].title + "\n\n" + all_results[0].url)
 
 if __name__ == "__main__":
 	import asyncio
