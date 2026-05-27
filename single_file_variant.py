@@ -20,8 +20,6 @@ def call_api(message):
     )
     return response.text
 
-from telegram.ext import ApplicationBuilder, MessageHandler, filters
-
 async def handle(update, ctx):
     message = update.message.text
     response = call_api(message)
