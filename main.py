@@ -1,19 +1,12 @@
-from fastapi import FastAPI
-import sqlalchemy as sa
-import json
-import requests
+from tkinter import filedialog
 
 
+def open_file():
+    file_path = filedialog.askopenfilename()
+    if file_path:
+        print(f"Selected file: {file_path}")
+    else:
+        print("No file selected.")
 
-engine = sa.create_engine("sqlite:///:memory:")
-connection = engine.connect()
-metadata = sa.MetaData()
-
-
-api = FastAPI()
-
-@api.get('/')
-def index():
-    return {'message': "Test return api"}
-
-# python -m uvicorn main:api --reload
+if __name__ == "__main__":
+    open_file()
