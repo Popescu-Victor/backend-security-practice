@@ -1,22 +1,15 @@
 import requests
-import pandas
 
 
-domain = input("Enter the domain: ")
-path_endpoint = input("Enter the path endpoint: ")
-query_params = input("Enter the query parameters (comma-separated): ").split(",")
+def main():
+    url_check = input("Enter a URL to check: ")
 
-def fetch_data(domain, path_endpoint, query_params):
-    url = f"https://{domain}/{path_endpoint}"
-    params = {param: "" for param in query_params}
-    
-    response = requests.get(url, params=params)
-    
-    if response.status_code == 200:
-        data = response.json()
-        return data
-    else:
-        print(f"Error: {response.status_code}")
-        return None
+    response = requests.get(url_check)
 
-data = fetch_data(domain, path_endpoint, query_params)
+    print(response.status_code)   # e.g. 200
+    print(response.headers)       # dict of response headers
+    print(response.text)          # response body as a string
+
+
+if __name__ == "__main__":
+    main()  
