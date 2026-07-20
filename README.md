@@ -1,1 +1,1 @@
-Repo for practicing backend and cybersecurity concepts.
+Oyste-RS Python Library built in Rust.
